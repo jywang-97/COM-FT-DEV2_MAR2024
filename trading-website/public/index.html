@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #444;
+            color: #fff;
+            padding: 10px;
+            text-align: right;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .login-form,
+        .register-form {
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 50px; /* Adjust the top position as needed */
+            right: 10px;
+            z-index: 1;
+        }
+
+        #loginButton,
+        #registerButton {
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Trading Website</h1>
+    </header>
+
+    <nav>
+        <button id="loginButton">Login</button>
+        <button id="registerButton">Register</button>
+    </nav>
+
+    <section>
+        <h2>Welcome to our Trading Platform</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Curabitur auctor, sem in euismod
+            tristique,
+            elit est ultrices tellus, ac bibendum justo mi vel lacus.
+        </p>
+
+        <!-- Login Form -->
+        <div class="login-form" id="loginForm">
+            <h2>Login</h2>
+            <form action="/login" method="post">
+                <label for="loginUsername">Username:</label>
+                <input type="text" id="loginUsername" name="loginUsername" required>
+
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" name="loginPassword" required>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <!-- Register Form -->
+        <div class="register-form" id="registerForm">
+            <h2>Register</h2>
+            <form action="/register" method="post">
+                <label for="registerUsername">Username:</label>
+                <input type="text" id="registerUsername" name="registerUsername" required>
+
+                <label for="registerEmail">Email:</label>
+                <input type="email" id="registerEmail" name="registerEmail" required>
+
+                <label for="registerPassword">Password:</label>
+                <input type="password" id="registerPassword" name="registerPassword" required>
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2024 Trading Website. All rights reserved.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginButton = document.getElementById('loginButton');
+            const registerButton = document.getElementById('registerButton');
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+
+            loginButton.addEventListener('click', function () {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+            });
+
+            registerButton.addEventListener('click', function () {
+                registerForm.style.display = 'block';
+                loginForm.style.display = 'none';
+            });
+
+            document.addEventListener('click', function (event) {
+                if (!loginForm.contains(event.target) && event.target.id !== 'loginButton') {
+                    loginForm.style.display = 'none';
+                }
+            });
+
+            document.addEventListener('click', function (event) {
+                if (!registerForm.contains(event.target) && event.target.id !== 'registerButton') {
+                    registerForm.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
