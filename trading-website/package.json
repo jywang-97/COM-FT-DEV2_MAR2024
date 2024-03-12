@@ -15,5 +15,8 @@
     "mysql2": "^3.9.2",
     "oracledb": "^6.3.0"
   },
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  }
 }

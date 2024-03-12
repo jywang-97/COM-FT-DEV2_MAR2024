@@ -1,0 +1,130 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Risk Assessment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Investment Risk Assessment</h1>
+        <form id="riskAssessmentForm">
+            <label for="name"><strong>Name:</strong></label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="age"><strong>Age:</strong></label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="occupation"><strong>Occupation:</strong></label>
+            <input type="text" id="occupation" name="occupation" required>
+
+            <label for="incomeRange"><strong>Annual Income Range:</strong></label>
+            <select id="incomeRange" name="incomeRange" required>
+                <option value="" disabled selected style="display:none;">Choose an option</option>
+                <option value="<30000">Below $30,000</option>
+                <option value="30000-50000">$30,000 - $50,000</option>
+                <option value="50001-100000">$50,001 - $100,000</option>
+                <option value="100001-150000">$100,001 - $150,000</option>
+                <option value=">150000">Above $150,000</option>
+            </select>
+
+            <div class="form-group">
+                <label for="investmentExperience"><strong>Investment Experience:</strong></label>
+                <div class="radio-group">
+                    <label><input type="radio" name="investmentExperience" value="yes" onclick="showExperienceDetails()"> Yes</label>
+                    <label><input type="radio" name="investmentExperience" value="no" onclick="hideExperienceDetails()"> No</label>
+                </div>
+            </div>
+            
+            <div class="form-group" id="experienceDetailsGroup" style="display: none;">
+                <label for="experienceDetails"><strong>If yes, please briefly describe your investment experience:</strong></label>
+                <textarea id="experienceDetails" name="experienceDetails"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="investmentGoals"><strong>Investment Goals:</strong></label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="investmentGoals" value="capitalPreservation"> Capital preservation</label>
+                    <label><input type="checkbox" name="investmentGoals" value="incomeGeneration"> Income generation</label>
+                    <label><input type="checkbox" name="investmentGoals" value="wealthAccumulation"> Wealth accumulation</label>
+                    <label><input type="checkbox" name="investmentGoals" value="speculativeGains"> Speculative gains</label>
+                </div>
+            </div>
+
+            <label for="riskTolerance"><strong>Risk Tolerance:</strong></label>
+            <select id="riskTolerance" name="riskTolerance" required>
+                <option value="" disabled selected style="display:none;">Choose an option</option>
+                <option value="veryConservative">Very conservative: The individual prefers low-risk, stable returns.</option>
+                <option value="conservative">Conservative: Willing to accept some risk for moderate returns.</option>
+                <option value="moderate">Moderate: Balanced approach between risk and returns.</option>
+                <option value="aggressive">Aggressive: Seeks higher returns, willing to take higher risks.</option>
+                <option value="veryAggressive">Very aggressive: Pursues maximum returns, comfortable with significant risks.</option>
+            </select>
+
+            <label for="timeHorizon"><strong>Time Horizon:</strong></label>
+            <select id="timeHorizon" name="timeHorizon" required>
+                <option value="" disabled selected style="display:none;">Choose an option</option>
+                <option value="shortTerm">Short-term (less than 1 year)</option>
+                <option value="mediumTerm">Medium-term (1-5 years)</option>
+                <option value="longTerm">Long-term (5 years or more)</option>
+            </select>
+
+            <label for="knowledgeInterest"><strong>Knowledge and Interest:</strong></label>
+            <select id="knowledgeInterest" name="knowledgeInterest" required>
+                <option value="" disabled selected style="display:none;">Choose an option</option>
+                <option value="novice">Novice (limited knowledge)</option>
+                <option value="intermediate">Intermediate (basic understanding)</option>
+                <option value="advanced">Advanced (experienced and knowledgeable)</option>
+            </select>
+
+            <!-- <button type="button" onclick="submitAssessment()">Submit Assessment</button> -->
+            <div class="form-group">
+                <button type="button" onclick="calculateCategory()">Submit</button>
+            </div>
+            
+            <div id="resultCategory" style="display: none;">
+                <h3>Your Category:</h3>
+                <p id="categoryResult"></p>
+            </div>
+        </form>
+    </div>
+
+       
+    <script>
+        function showExperienceDetails() {
+            document.getElementById('experienceDetailsGroup').style.display = 'block';
+        }
+    
+        function hideExperienceDetails() {
+            document.getElementById('experienceDetailsGroup').style.display = 'none';
+        }
+
+        function calculateCategory() {
+        // Get selected values from the form
+        const investmentExperience = document.querySelector('input[name="investmentExperience"]:checked').value;
+        const investmentGoals = document.querySelectorAll('input[name="investmentGoals"]:checked');
+        const timeHorizon = document.getElementById('timeHorizon').value;
+
+        // Perform a simple calculation (customize based on your criteria)
+        let category = '';
+
+        if (investmentExperience === 'yes' && investmentGoals.length > 0 && timeHorizon === 'longTerm') {
+            category = 'Aggressive Investor';
+        } else {
+            category = 'Conservative Investor';
+        }
+
+        // Display the result
+        document.getElementById('categoryResult').innerText = category;
+        document.getElementById('resultCategory').style.display = 'block';
+        }
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
